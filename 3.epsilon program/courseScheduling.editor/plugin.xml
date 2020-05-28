@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated courseScheduling -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="courseScheduling.presentation.CourseSchedulingModelWizardID"
+            name="%_UI_CourseSchedulingModelWizard_label"
+            class="courseScheduling.presentation.CourseSchedulingModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/CourseSchedulingModelFile.gif">
+         <description>%_UI_CourseSchedulingModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated courseScheduling -->
+      <editor
+            id="courseScheduling.presentation.CourseSchedulingEditorID"
+            name="%_UI_CourseSchedulingEditor_label"
+            icon="icons/full/obj16/CourseSchedulingModelFile.gif"
+            extensions="coursescheduling"
+            class="courseScheduling.presentation.CourseSchedulingEditor"
+            contributorClass="courseScheduling.presentation.CourseSchedulingActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

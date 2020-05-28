@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="timetableM2T.handlers.SampleHandler"
+            commandId="timetableM2T.generateHTML">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="true"
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               id="test.menus.sampleMenu"
+               label="timetableM2T"
+               mnemonic="M">
+            <command
+                  commandId="timetableM2T.generateHTML"
+                  id="timetableM2T.menus.genCommand"
+                  label="generate html"
+                  mnemonic="S">
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="timetableM2T.category"
+            name="timetablecategory">
+      </category>
+      <command
+            categoryId="timetableM2T.category"
+            id="timetableM2T.generateHTML"
+            name="genHTML">
+      </command>
+   </extension>
+
+</plugin>

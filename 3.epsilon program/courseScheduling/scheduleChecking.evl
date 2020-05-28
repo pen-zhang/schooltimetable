@@ -1,0 +1,291 @@
+pre {
+	'Validation begin'.println();
+}
+
+
+operation CheckTimeformat(t: Integer): Boolean{
+	var hour=t/100;
+	var minute=t.mod(100);
+	if (minute>=60 or hour>=24)
+	{
+		return false;
+	}
+	else
+		return true;
+}
+
+context Timetable {
+
+constraint CheckDayTime {
+	guard: self.startTime.isDefined() and self.endTime.isDefined()
+	check: self.startTime < self.endTime
+	message: 'Timetable\'s endTime should be bigger than startTime!'
+	}
+	
+constraint TimeFormat{
+	guard: self.startTime.isDefined() and self.endTime.isDefined()
+	check: CheckTimeformat(self.startTime) and CheckTimeformat(self.endTime)
+	message: 'Timetable\'s timeformat is wrong. It should be 24-hour format, like 800 or 1300.'
+	}
+}
+
+context SubTimetable{	
+//subtimetable's class number is defined or not
+critique HasName{
+	check: self.classNumber.isDefined()
+	message: 'Unnamed Timetable ' + self.classNumber
+	}
+
+//no repeatitive week day
+constraint RepeativeDay{
+	
+	check{
+			var mark=true;
+			if (self.weekday.name.value.select(d|d=1).size() >1) mark=false;
+			if (self.weekday.name.value.count(2) >1) mark=false;
+			if (self.weekday.name.value.count(3) >1) mark=false;
+			if (self.weekday.name.value.count(4) >1) mark=false;
+			if (self.weekday.name.value.count(5) >1) mark=false;
+			if (self.weekday.name.value.count(6) >1) mark=false;
+			if (self.weekday.name.value.count(7) >1) mark=false;
+				
+			return mark;
+		}
+	message: 'Timetable '+self.classNumber+' has repeatitive name of Day_column.'
+	}
+}
+
+//the next class's start later than the preivous
+context Day_column{
+constraint Overlap{
+	check{
+		var cn=SubTimetable.all().select(t|t.weekday.includes(self));
+		
+		var a =self.courses.
+		selectOne(c:Course| c<> self.courses.first()  and c.startTime<self.courses.
+			at(self.courses.indexOf(c)-1).endTime);
+		if (a = null) 
+			return true;
+		else
+			return false;
+	}	
+	message: 'Timetable '+ cn.classNumber.first()+ ' ' + self.name.name+', '
+		+a.name+'\'s startTime should be bigger'
+	
+	}
+
+}
+
+//find the SubTimetable of the course
+operation Course locateT(){
+	var cn:SubTimetable;
+	var da:Day_column;
+	for(item in SubTimetable.all())
+		for(day in item.weekday)
+			if(day.courses.includes(self))
+			{
+				cn=item;
+				da=day;
+				break;
+				}
+	return cn;
+}
+//find the Day_column of the course
+operation Course locateD(){
+	var cn:SubTimetable;
+	var da:Day_column;
+	for(item in SubTimetable.all())
+		for(day in item.weekday)
+			if(day.courses.includes(self))
+			{
+				cn=item;
+				da=day;
+				break;
+				}
+	return da;
+}
+
+
+context Course{
+//check course's every property defined
+constraint HasName{
+	check{	
+		var cn:SubTimetable;
+		var da:Day_column;
+		for(item in SubTimetable.all())
+		for(day in item.weekday)
+			if(day.courses.includes(self))
+			{
+				cn=item;
+				da=day;
+				break;
+			}
+					
+		var mark=true;
+		mark= self.name.isDefined() and self.duration.isDefined() and self.classLimit.isDefined()
+		and self.instructors.isDefined() and self.room.isDefined() and self.startTime.isDefined();
+		return mark;
+		}
+	message: 'Timetable '+cn.classNumber+ ' ' +da.name.name+', '+self.name+' has blank properties.'
+	}
+	
+constraint TimeFormat{
+	check: CheckTimeformat(self.startTime)
+	message{
+		var da=self.locateD();
+		var cn=self.locateT();
+		return 'Timetable '+cn.classNumber+ ' ' +da.name.name+', '+self.name+'\'s timeformat is wrong. It should be 24-hour format, like 800 or 1300. ';
+	}
+}
+
+constraint CheckTime{
+	check: self.startTime>=Timetable.all().first().startTime and self.endTime<=Timetable.all().first().endTime
+	message : 'Timetable '+self.locateT().classNumber+ ' ' +self.locateD().name.name+', '+self.name+'\'s time is wrong.'
+}
+	
+//classlimit not overpass the room capacity
+critique CheckRoomCapacity{
+	check
+	{
+		var m:String;
+		if(self.room.isDefined() and self.classLimit.isDefined()){
+			if(self.room.capacity > self.classLimit)
+				return true;
+			else
+			{	
+				var cn:SubTimetable;
+				var da:Day_column;
+				for(item in SubTimetable.all())
+					for(day in item.weekday)
+						if(day.courses.includes(self))
+						{
+							cn=item;
+							da=day;
+							break;
+							}
+
+				m= 'Timetable ' + cn.classNumber +' '
+					+ da.name.name +', '
+					+ self.name +'\'s classlimit overpass the room capacity.';
+				return false;
+			}
+		}		
+		else{
+			m= 'Course '+ self.name +'\'s room or classLimit is undefined';
+			return false;
+			}
+			
+	}
+	message: m
+	fix{
+		title:'Change to another room'
+		do{			
+			var da:Day_column;
+			for(day in Day_column.all())
+				if(day.courses.includes(self))
+				{
+					da=day;
+					break;
+					}
+			
+			self.room=Room.all().selectOne(r|r.capacity>=self.classLimit and 
+			Day_column.all().select(d|d.name=da.name).courses.
+				select(c|c.endTime<=self.startTime and c.startTime>=self.endTime).room.excludes(r));
+			
+		}
+		}
+	
+	}
+
+critique OccpiedRoom{
+	check{
+			
+			var cn=self.locateT();
+			var da=self.locateD();
+			var collisionCL : Sequence;
+			var collisionRoom : Sequence;
+		if( SubTimetable.all().size()>1)
+			for(d in Day_column.all())
+			{
+				if(d<>da and d.name=da.name){
+					
+					var temp=d.courses.select(c|not (c.endTime<=self.startTime 
+						or c.startTime>=self.endTime));
+					
+					for(i in temp)
+						collisionCL.add(i);
+					}
+			}
+			
+			if (not collisionCL.isEmpty()){
+				
+				collisionRoom=collisionCL.room.select(r|r=self.room);
+				
+				if(not collisionRoom.isEmpty())
+				{
+					return false;
+				}
+				else
+					return true;
+			}
+			else
+				return true;
+	}
+	message: 'Timetable '+ cn.classNumber +' '+ da.name.name+', '
+		+self.name +'\'s room is in a collision'
+}
+	
+//an instrutor cannot be teach two class at the same time
+constraint TeacherW2Course{
+	check{
+		var cn:SubTimetable;
+		var da:Day_column;
+		if(  SubTimetable.all().size()>1){
+			
+			for(item in SubTimetable.all())
+				for(day in item.weekday)
+					if(day.courses.includes(self))
+					{
+					cn=item;
+					da=day;
+					break;
+					}
+			
+			var collisionCL : Sequence;
+			var collisionIns : Sequence;
+		
+			for(d in Day_column.all())
+			{
+				if(d<>da and d.name=da.name){
+					
+					var temp=d.courses.select(c|not (c.endTime<=self.startTime 
+						or c.startTime>=self.endTime));
+					
+					for(i in temp)
+						collisionCL.add(i);
+					}
+			}
+			
+			if (not collisionCL.isEmpty()){
+				
+				collisionIns=collisionCL.instructors.select(i|i=self.instructors);
+				
+				if(not collisionIns.isEmpty())
+					return false;
+				else
+					return true;
+			}
+			else
+				return true;	
+			}
+			else
+				return true;	
+		}
+		message: 'Timetable '+ cn.classNumber +' '+ da.name.name+', '
+		+self.name +'\'s instructor is in a collision'
+	}
+}
+
+post {
+	'Validation done'.println();
+}

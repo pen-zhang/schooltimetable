@@ -1,0 +1,8 @@
+
+rule TT2HTML
+	transform timetable : Timetable { 
+
+	template : "timetableM2T.egl"
+
+	target : "timetable"+ ".html"
+}

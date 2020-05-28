@@ -1,0 +1,9 @@
+
+operation timeFormalize(input : Integer) : String{
+	
+	var h= input/100;
+	var m= input.mod(100);
+
+	var time=h.format("%02d") +":" +m.format("%02d");
+	return time;
+}

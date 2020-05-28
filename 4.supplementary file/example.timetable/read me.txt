@@ -1,0 +1,4 @@
+1. import all folders in "3.epsilon program" into eclipse
+2. run a new eclipse application
+3. import projects->General->Existing Projects into Workspace->Browse to the timetable project folder-> checking the option " Copy porjects into workspace"->finish
+4. now you can see the example of the project

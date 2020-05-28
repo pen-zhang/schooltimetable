@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Timetable xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns="courseScheduling" startTime="800" endTime="1600">
+  <timetables classNumber="1">
+    <weekday>
+      <courses startTime="800" endTime="900" name="Math" duration="60" classLimit="20">
+        <instructors href="InstructorList.coursescheduling#//@instructors.5"/>
+        <room href="RoomList.coursescheduling#//@rooms.0"/>
+      </courses>
+      <courses startTime="900" endTime="1000" name="Literature" duration="60" classLimit="20">
+        <instructors href="InstructorList.coursescheduling#//@instructors.3"/>
+        <room href="RoomList.coursescheduling#//@rooms.0"/>
+      </courses>
+      <courses startTime="1000" endTime="1100" name="Physics" duration="60" classLimit="30">
+        <instructors href="InstructorList.coursescheduling#//@instructors.1"/>
+        <room href="RoomList.coursescheduling#//@rooms.2"/>
+      </courses>
+      <courses startTime="1200" endTime="1300" name="PE" duration="60" classLimit="30">
+        <instructors href="InstructorList.coursescheduling#//@instructors.4"/>
+        <room href="RoomList.coursescheduling#//@rooms.1"/>
+      </courses>
+      <courses startTime="1300" endTime="1500" name="History" duration="120" classLimit="30">
+        <instructors href="InstructorList.coursescheduling#//@instructors.2"/>
+        <room href="RoomList.coursescheduling#//@rooms.3"/>
+      </courses>
+    </weekday>
+    <weekday name="Tuesday">
+      <courses startTime="800" endTime="1000" name="Literature" duration="120" classLimit="30">
+        <instructors href="InstructorList.coursescheduling#//@instructors.3"/>
+        <room href="RoomList.coursescheduling#//@rooms.3"/>
+      </courses>
+      <courses startTime="1400" endTime="1430" name="Music" duration="30"/>
+    </weekday>
+    <weekday name="Wednesday">
+      <courses name="Music"/>
+      <courses startTime="800" endTime="900" name="Math" duration="60" classLimit="20">
+        <room href="RoomList.coursescheduling#//@rooms.0"/>
+      </courses>
+    </weekday>
+  </timetables>
+  <timetables classNumber="2">
+    <weekday>
+      <courses startTime="1300" endTime="1400" name="Music" duration="60"/>
+      <courses startTime="800" endTime="900" name="Math" duration="60" classLimit="20">
+        <room href="RoomList.coursescheduling#//@rooms.0"/>
+      </courses>
+    </weekday>
+    <weekday name="Wednesday">
+      <courses startTime="800" endTime="1000" name="Literature" duration="120" classLimit="30">
+        <room href="RoomList.coursescheduling#//@rooms.3"/>
+      </courses>
+      <courses startTime="1000" endTime="1200" name="Politics" duration="120"/>
+    </weekday>
+    <weekday name="Friday">
+      <courses startTime="800" endTime="900" name="Math" duration="60" classLimit="20">
+        <room href="RoomList.coursescheduling#//@rooms.0"/>
+      </courses>
+      <courses startTime="900" endTime="1000" name="Literature" duration="60" classLimit="20">
+        <room href="RoomList.coursescheduling#//@rooms.0"/>
+      </courses>
+      <courses startTime="1000" endTime="1100" name="Physics" duration="60" classLimit="30">
+        <room href="RoomList.coursescheduling#//@rooms.2"/>
+      </courses>
+      <courses startTime="1200" endTime="1300" name="PE" duration="60" classLimit="30">
+        <room href="RoomList.coursescheduling#//@rooms.1"/>
+      </courses>
+      <courses startTime="1300" endTime="1500" name="History" duration="120" classLimit="30">
+        <room href="RoomList.coursescheduling#//@rooms.3"/>
+      </courses>
+    </weekday>
+  </timetables>
+</Timetable>

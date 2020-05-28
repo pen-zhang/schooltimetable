@@ -1,0 +1,101 @@
+[% import 'timetableUtil.eol'; %]
+[% out.setContentType("HTML"); %]
+
+<html>
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+  text-align: left;    
+}
+</style>
+</head>
+
+<body>
+[% for (t in timetable.timetables) {%]
+[% var incre=0; %]
+<h1>Timetable: Class [%=t.classNumber%]</h1>
+
+<table border="1">
+<tr>
+<th>Time</th>
+<th>Monday</th>
+<th>Tuesday</th>
+<th>Wednesday</th>
+<th>Thursday</th>
+<th>Friday</th>
+<th>Saturday</th>
+<th>Sunday</th>
+</tr>
+
+[* one slot represents half hour *]
+[% var start=timetable.startTime; %]
+[% while ( start <timetable.endTime  ){ %]
+[%
+if(start.mod(100) = 0){
+	incre=30;
+	}
+else if (start.mod(100) =30){
+	incre=70;
+}
+%]
+[* row in the timetable *]
+<tr>
+<td>[%=timeFormalize(start)%]-[%=timeFormalize(start+incre) %]</td> [* first cell in a row: time *]
+[% var index=0; %] 
+[% for (i in Sequence {1..7}){
+	var day=t.weekday.selectOne(x|x.name.value=i);
+	if(day<>null) {
+			var c=day.courses.selectOne(x|x.startTime>=start and x.startTime<start+incre);
+			c.println();
+			if ( c<>null) { %]
+			[%	var dura=c.duration;
+				var slot : Integer;
+				
+				if(dura.mod(30)>0){
+					slot=1+dura/30;
+				}
+				else
+				{
+					slot=dura/30;
+				}
+			%]
+			
+			<td rowspan=[%=slot %] bgcolor="AliceBlue ">[%=c.name%]<br>[%=timeFormalize(c.startTime)%]-[%=timeFormalize(c.endTime)%]<br>
+						[%=c.instructors.name%]<br>
+						Room [%if(c.room.isDefined()) {out.print(c.room.name); }
+						else{ out.print("---");}%] </td>
+			
+[%		index+=1;		} %]
+[% 			else{
+				var cross_c=day.courses.selectOne(x|x.startTime<start and x.endTime>start);
+				if(cross_c <> null)
+				{ //do nothing 
+				}
+				else{
+%]
+			<td></td>
+[% 			}	} %]
+[%			 } %] [* find the course in a day which fits the slot *]
+[% 		else {%]
+		<td></td>
+[% 	}  %]
+[% } %] 	[* loop of a row*]
+
+
+
+</tr>
+
+[%	start+=incre;%] 
+[% } %]
+
+
+</table>
+
+[%}%]
+</body>
+</html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Timetable xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns="courseScheduling" xmi:id="_EgkLQGZ5EeqXsu9X0qgWqw" startTime="800" endTime="1600">
+  <timetables xmi:id="_3jfkYHJLEeqhfoT9J9W46w" classNumber="1">
+    <weekday xmi:id="_35r20HJLEeqhfoT9J9W46w">
+      <courses xmi:id="_4Te24HJLEeqhfoT9J9W46w" startTime="800" endTime="900" name="Math" duration="60">
+        <room href="testRoomList.model#_xov_YGc2EeqXsu9X0qgWqw"/>
+      </courses>
+      <courses xmi:id="_49dA8HJLEeqhfoT9J9W46w" startTime="900" endTime="1000" name="English" duration="60">
+        <room href="testRoomList.model#_xov_YGc2EeqXsu9X0qgWqw"/>
+      </courses>
+      <courses xmi:id="_5WjdcHJLEeqhfoT9J9W46w" startTime="1300" endTime="1500" name="PE" duration="120">
+        <room href="testRoomList.model#_xov_YGc2EeqXsu9X0qgWqw"/>
+      </courses>
+    </weekday>
+    <weekday xmi:id="_4oGcAHJLEeqhfoT9J9W46w" name="Thursday">
+      <courses xmi:id="_YRGw0HKeEeqna-q3d88RJg" startTime="1000" endTime="1100" name="Science" duration="60">
+        <room href="testRoomList.model#_xov_YGc2EeqXsu9X0qgWqw"/>
+      </courses>
+      <courses xmi:id="_ZQkpwHKeEeqna-q3d88RJg" startTime="1200" endTime="1300" name="Math" duration="60"/>
+    </weekday>
+  </timetables>
+  <timetables xmi:id="_5y-6wHJLEeqhfoT9J9W46w" classNumber="2">
+    <weekday xmi:id="_6LHG4HJLEeqhfoT9J9W46w">
+      <courses xmi:id="_g0AmAHKeEeqna-q3d88RJg" startTime="900" endTime="1000" name="Math" duration="60">
+        <room href="testRoomList.model#_x6AugGc2EeqXsu9X0qgWqw"/>
+      </courses>
+    </weekday>
+    <weekday xmi:id="_fvspUHKeEeqna-q3d88RJg" name="Tuesday">
+      <courses xmi:id="_hIrOcHKeEeqna-q3d88RJg" startTime="1000" endTime="1200" name="Science" duration="120">
+        <room href="testRoomList.model#_x6AugGc2EeqXsu9X0qgWqw"/>
+      </courses>
+    </weekday>
+  </timetables>
+  <timetables xmi:id="_33t_8HKjEeqna-q3d88RJg" classNumber="3"/>
+</Timetable>

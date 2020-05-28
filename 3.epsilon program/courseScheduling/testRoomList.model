@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="ASCII"?>
+<RoomList xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns="courseScheduling" xmi:id="_wxtpsGc2EeqXsu9X0qgWqw">
+  <rooms xmi:id="_xov_YGc2EeqXsu9X0qgWqw" name="1" capacity="50"/>
+  <rooms xmi:id="_x6AugGc2EeqXsu9X0qgWqw" name="2" capacity="30"/>
+  <rooms xmi:id="_yKy8gGc2EeqXsu9X0qgWqw" name="3" capacity="30"/>
+  <rooms xmi:id="_ybbZgGc2EeqXsu9X0qgWqw" name="4" capacity="20"/>
+</RoomList>

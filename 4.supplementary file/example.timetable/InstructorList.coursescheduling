@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<InstructorList xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns="courseScheduling">
+  <instructors name="Jane"/>
+  <instructors name="Thomas">
+    <courses href="MyTimetable.coursescheduling#//@timetables.0/@weekday.0/@courses.2"/>
+  </instructors>
+  <instructors name="Monica">
+    <courses href="MyTimetable.coursescheduling#//@timetables.0/@weekday.0/@courses.4"/>
+  </instructors>
+  <instructors name="Mary">
+    <courses href="MyTimetable.coursescheduling#//@timetables.0/@weekday.0/@courses.1"/>
+    <courses href="MyTimetable.coursescheduling#//@timetables.0/@weekday.1/@courses.0"/>
+  </instructors>
+  <instructors name="Lee">
+    <courses href="MyTimetable.coursescheduling#//@timetables.0/@weekday.0/@courses.3"/>
+  </instructors>
+  <instructors name="Anna">
+    <courses href="MyTimetable.coursescheduling#//@timetables.0/@weekday.0/@courses.0"/>
+  </instructors>
+</InstructorList>

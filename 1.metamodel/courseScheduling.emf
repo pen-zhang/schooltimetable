@@ -1,0 +1,54 @@
+@namespace(uri="courseScheduling", prefix="")
+package courseScheduling;
+
+class Timetable extends TimedElement{
+	val SubTimetable[*] timetables;
+}
+
+//different class have different timetables without collison
+class SubTimetable{
+	attr int classNumber;
+	val Day_column[1..7] weekday;
+}
+
+class TimedElement{
+	attr int startTime;
+	attr int endTime;
+}
+
+class Day_column{
+	attr day name;
+	val Course[+] courses;
+}
+
+enum day{
+	Monday=1;Tuesday;Wednesday;Thursday;Friday;Saturday;Sunday;
+}
+
+//diffetent course can't overlap
+class Course extends TimedElement{
+	attr String name;
+	attr int duration;
+	attr int classLimit;
+	ref Instructor[+]#courses instructors;
+	ref Room[1] room;
+}
+
+class InstructorList{
+	val Instructor[*] instructors;
+}
+
+//instructor can't have more than one course at the same time
+class Instructor{
+	attr String name;
+	ref Course[+]#instructors courses;
+}
+
+class RoomList{
+	val Room[*] rooms;
+}
+
+class Room{
+	attr String name;
+	attr int capacity;
+}

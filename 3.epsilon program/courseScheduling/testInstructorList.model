@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ASCII"?>
+<InstructorList xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns="courseScheduling" xmi:id="__N3scGeSEeqH58q4tBBYOA">
+  <instructors xmi:id="_d_b_YGeXEeqH58q4tBBYOA" name="Jane">
+    <courses href="test.model#_AReVkGcyEeqXsu9X0qgWqw"/>
+    <courses href="test.model#_3P5I0GgMEeqH58q4tBBYOA"/>
+  </instructors>
+  <instructors xmi:id="_e3wugGeXEeqH58q4tBBYOA" name="Mary"/>
+  <instructors xmi:id="_ejfHoGeXEeqH58q4tBBYOA" name="Monica">
+    <courses href="test.model#_NmX5MGZ5EeqXsu9X0qgWqw"/>
+    <courses href="test.model#_wdrzEGc5EeqXsu9X0qgWqw"/>
+    <courses href="test.model#_XrJdMGefEeqH58q4tBBYOA"/>
+  </instructors>
+  <instructors xmi:id="_eSDZYGeXEeqH58q4tBBYOA" name="Sam">
+    <courses href="test.model#_N_s_MGZ5EeqXsu9X0qgWqw"/>
+  </instructors>
+</InstructorList>

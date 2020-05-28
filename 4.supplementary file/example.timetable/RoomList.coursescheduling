@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RoomList xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns="courseScheduling">
+  <rooms name="101" capacity="20"/>
+  <rooms name="123" capacity="20"/>
+  <rooms name="132" capacity="20"/>
+  <rooms name="102" capacity="30"/>
+</RoomList>

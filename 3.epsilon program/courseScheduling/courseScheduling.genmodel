@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="" modelDirectory="/courseScheduling/src" modelPluginID="courseScheduling"
+    modelName="CourseScheduling" importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0"
+    copyrightFields="false">
+  <foreignModel>courseScheduling.ecore</foreignModel>
+  <genPackages prefix="CourseScheduling" disposableProviderFactory="true" ecorePackage="courseScheduling.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="courseScheduling.ecore#//day">
+      <genEnumLiterals ecoreEnumLiteral="courseScheduling.ecore#//day/Monday"/>
+      <genEnumLiterals ecoreEnumLiteral="courseScheduling.ecore#//day/Tuesday"/>
+      <genEnumLiterals ecoreEnumLiteral="courseScheduling.ecore#//day/Wednesday"/>
+      <genEnumLiterals ecoreEnumLiteral="courseScheduling.ecore#//day/Thursday"/>
+      <genEnumLiterals ecoreEnumLiteral="courseScheduling.ecore#//day/Friday"/>
+      <genEnumLiterals ecoreEnumLiteral="courseScheduling.ecore#//day/Saturday"/>
+      <genEnumLiterals ecoreEnumLiteral="courseScheduling.ecore#//day/Sunday"/>
+    </genEnums>
+    <genClasses ecoreClass="courseScheduling.ecore#//Timetable">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference courseScheduling.ecore#//Timetable/timetables"/>
+    </genClasses>
+    <genClasses ecoreClass="courseScheduling.ecore#//SubTimetable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute courseScheduling.ecore#//SubTimetable/classNumber"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference courseScheduling.ecore#//SubTimetable/weekday"/>
+    </genClasses>
+    <genClasses ecoreClass="courseScheduling.ecore#//TimedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute courseScheduling.ecore#//TimedElement/startTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute courseScheduling.ecore#//TimedElement/endTime"/>
+    </genClasses>
+    <genClasses ecoreClass="courseScheduling.ecore#//Day_column">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute courseScheduling.ecore#//Day_column/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference courseScheduling.ecore#//Day_column/courses"/>
+    </genClasses>
+    <genClasses ecoreClass="courseScheduling.ecore#//Course">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute courseScheduling.ecore#//Course/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute courseScheduling.ecore#//Course/duration"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute courseScheduling.ecore#//Course/classLimit"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference courseScheduling.ecore#//Course/instructors"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference courseScheduling.ecore#//Course/room"/>
+    </genClasses>
+    <genClasses ecoreClass="courseScheduling.ecore#//InstructorList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference courseScheduling.ecore#//InstructorList/instructors"/>
+    </genClasses>
+    <genClasses ecoreClass="courseScheduling.ecore#//Instructor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute courseScheduling.ecore#//Instructor/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference courseScheduling.ecore#//Instructor/courses"/>
+    </genClasses>
+    <genClasses ecoreClass="courseScheduling.ecore#//RoomList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference courseScheduling.ecore#//RoomList/rooms"/>
+    </genClasses>
+    <genClasses ecoreClass="courseScheduling.ecore#//Room">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute courseScheduling.ecore#//Room/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute courseScheduling.ecore#//Room/capacity"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
